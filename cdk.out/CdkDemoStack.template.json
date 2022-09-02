@@ -1,0 +1,247 @@
+{
+ "Resources": {
+  "mainVPCE9003D1B": {
+   "Type": "AWS::EC2::VPC",
+   "Properties": {
+    "CidrBlock": "10.0.0.0/16",
+    "EnableDnsHostnames": true,
+    "EnableDnsSupport": true,
+    "InstanceTenancy": "default",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "CdkDemoStack/mainVPC"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkDemoStack/mainVPC/Resource"
+   }
+  },
+  "mainVPCpublicsubnetSubnet1SubnetBFA6024D": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "VpcId": {
+     "Ref": "mainVPCE9003D1B"
+    },
+    "AvailabilityZone": "eu-west-1a",
+    "CidrBlock": "10.0.0.0/24",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "public-subnet"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "CdkDemoStack/mainVPC/public-subnetSubnet1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkDemoStack/mainVPC/public-subnetSubnet1/Subnet"
+   }
+  },
+  "mainVPCpublicsubnetSubnet1RouteTable61342F23": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "VpcId": {
+     "Ref": "mainVPCE9003D1B"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "CdkDemoStack/mainVPC/public-subnetSubnet1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkDemoStack/mainVPC/public-subnetSubnet1/RouteTable"
+   }
+  },
+  "mainVPCpublicsubnetSubnet1RouteTableAssociationBFE2BD26": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "mainVPCpublicsubnetSubnet1RouteTable61342F23"
+    },
+    "SubnetId": {
+     "Ref": "mainVPCpublicsubnetSubnet1SubnetBFA6024D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkDemoStack/mainVPC/public-subnetSubnet1/RouteTableAssociation"
+   }
+  },
+  "mainVPCpublicsubnetSubnet1DefaultRoute3DC637E8": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "mainVPCpublicsubnetSubnet1RouteTable61342F23"
+    },
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "mainVPCIGWD3D35773"
+    }
+   },
+   "DependsOn": [
+    "mainVPCVPCGWC157291A"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "CdkDemoStack/mainVPC/public-subnetSubnet1/DefaultRoute"
+   }
+  },
+  "mainVPCpublicsubnetSubnet2SubnetCA384957": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "VpcId": {
+     "Ref": "mainVPCE9003D1B"
+    },
+    "AvailabilityZone": "eu-west-1b",
+    "CidrBlock": "10.0.1.0/24",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "public-subnet"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "CdkDemoStack/mainVPC/public-subnetSubnet2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkDemoStack/mainVPC/public-subnetSubnet2/Subnet"
+   }
+  },
+  "mainVPCpublicsubnetSubnet2RouteTable5FCDBCE6": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "VpcId": {
+     "Ref": "mainVPCE9003D1B"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "CdkDemoStack/mainVPC/public-subnetSubnet2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkDemoStack/mainVPC/public-subnetSubnet2/RouteTable"
+   }
+  },
+  "mainVPCpublicsubnetSubnet2RouteTableAssociationEC4F438B": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "mainVPCpublicsubnetSubnet2RouteTable5FCDBCE6"
+    },
+    "SubnetId": {
+     "Ref": "mainVPCpublicsubnetSubnet2SubnetCA384957"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkDemoStack/mainVPC/public-subnetSubnet2/RouteTableAssociation"
+   }
+  },
+  "mainVPCpublicsubnetSubnet2DefaultRoute77DD81A0": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "mainVPCpublicsubnetSubnet2RouteTable5FCDBCE6"
+    },
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "mainVPCIGWD3D35773"
+    }
+   },
+   "DependsOn": [
+    "mainVPCVPCGWC157291A"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "CdkDemoStack/mainVPC/public-subnetSubnet2/DefaultRoute"
+   }
+  },
+  "mainVPCIGWD3D35773": {
+   "Type": "AWS::EC2::InternetGateway",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "CdkDemoStack/mainVPC"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkDemoStack/mainVPC/IGW"
+   }
+  },
+  "mainVPCVPCGWC157291A": {
+   "Type": "AWS::EC2::VPCGatewayAttachment",
+   "Properties": {
+    "VpcId": {
+     "Ref": "mainVPCE9003D1B"
+    },
+    "InternetGatewayId": {
+     "Ref": "mainVPCIGWD3D35773"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkDemoStack/mainVPC/VPCGW"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/0WPwQ6CMAyGn8X7mEhM9Eo4GG8EDFezjRoHozOskxjCuzsU5dSvX/6mbcL3MY83YnCRqtvIaMnHkoRqWVBXUAkfq4di2Q2rPGO5l0ar0ksEmt1KhfUEFyENrH51qXNWaUHa4j88wxkJ+pA8CYJBvJY1S5dSuOPeAdLECnDW9+oz9OOJoa2BN2773B35IXzROK2j3iPpDnjxrW+DX6pb4QAAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkDemoStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}
